@@ -74,5 +74,9 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) /bin/ocsinv
 %{_datadir}/%{name}/
-%{perl_vendorlib}/
+%dir %{perl_vendorlib}/Ocsinventory
+%{perl_vendorlib}/Ocsinventory/Agent.pm
+%{perl_vendorlib}/Ocsinventory/ocsinventory-client.pl
+%dir %{perl_vendorlib}/Ocsinventory/Agent
+%{perl_vendorlib}/Ocsinventory/Agent/*
 %dir %{_var}/log/ocsinventory-client
