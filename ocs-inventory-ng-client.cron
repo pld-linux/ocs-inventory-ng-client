@@ -1,0 +1,1 @@
+1 12 * * * root cd /usr/sbin && perl ocsinventory-client.pl > /dev/null 2>&1
