@@ -45,7 +45,7 @@ find '(' -name '*.php' -o -name '*.inc' -o  -name '*.conf' -o  -name '*.htc' -o 
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_datadir}/%{name},%{_sysconfdir}/{logrotate.d,ocsinventory-agent,cron.d}}
+install -d $RPM_BUILD_ROOT{%{_datadir}/%{name},%{_sysconfdir}/{logrotate.d,ocsinventory-agent,cron.daily}}
 install -d $RPM_BUILD_ROOT{%{_var}/{log/ocsinventory-agent,lib/ocsinventory-agent},%{_bindir},%{_sbindir},/bin}
 
 OCS_AGENT_ADMININFO_FILE="ocsinv.adm"
