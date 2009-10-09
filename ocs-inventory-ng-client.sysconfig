@@ -1,0 +1,6 @@
+# use cron or none
+OCSMODE=none
+#OCSPAUSE=
+#OCSTAG=
+#OCSSERVER=localhost
+
