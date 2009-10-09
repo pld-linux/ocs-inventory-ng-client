@@ -1,3 +1,5 @@
+#TODO:
+# - init script or cron, choice in %{_sysconfdir}/sysconfig/ocsinventory-agent (example in debian)
 
 Summary:	OCS-ng Inventory agent for PLD systems
 Summary(pl.UTF-8):	Agent OCS-ng Inventory dla systemów PLD
@@ -8,10 +10,10 @@ License:	GPL
 Group:		Networking/Daemons
 Source0:	http://dl.sourceforge.net/ocsinventory/OCSNG_UNIX_AGENT-%{version}.tar.gz
 # Source0-md5:	749501586e0c634680c13000b3b2851e
-Source1:	%{name}.conf
-Source2:	%{name}.adm
+Source1:        %{name}.logrotate
+Source2:	%{name}.conf
 Source3:	%{name}.cron
-Source4:	%{name}.logrotate
+Source4:        %{name}.sysconfig
 URL:		http://www.ocsinventory-ng.org/
 BuildRequires:	perl-devel >= 1:5.6
 BuildRequires:	perl-ExtUtils-MakeMaker
@@ -52,9 +54,10 @@ OCS_AGENT_ADMININFO_FILE="ocsinv.adm"
 	DESTDIR=$RPM_BUILD_ROOT
 
 ln -s /usr/sbin/ocsinventory-client.pl $RPM_BUILD_ROOT/bin/ocsinv
-install %SOURCE4 $RPM_BUILD_ROOT%{_sysconfdir}/logrotate.d/ocsinventory-agent
-install %SOURCE1 $RPM_BUILD_ROOT%{_sysconfdir}/ocsinventory-agent/ocsinv.conf
-install %SOURCE3 $RPM_BUILD_ROOT%{_sysconfdir}/cron.d/ocsinventory-agent
+install %SOURCE1 $RPM_BUILD_ROOT%{_sysconfdir}/logrotate.d/ocsinventory-agent
+install %SOURCE2 $RPM_BUILD_ROOT%{_sysconfdir}/ocsinventory-agent/ocsinventory-agent
+install %SOURCE3 $RPM_BUILD_ROOT%{_sysconfdir}/cron.daily/ocsinventory-agent
+install %SOURCE4 $RPM_BUILD_ROOT%{_sysconfdir}/sysconfig/ocsinventory-agent
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -65,10 +68,11 @@ rm -rf $RPM_BUILD_ROOT
 #Ocsinventory/README
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/logrotate.d/ocsinventory-agent
 %dir %{_sysconfdir}/ocsinventory-agent
-%{_sysconfdir}/ocsinventory-agent/ocsinv.conf
-%{_sysconfdir}/cron.d/ocsinventory-agent
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/ocsinventory-agent/ocsinventory-agent
+%attr(750,root,root) %config(noreplace) %verify(not md5 mtime size)  %{_sysconfdir}/cron.daily/ocsinventory-agent
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/sysconfig/ocsinventory-agent
+#%{_sysconfdir}/init.d/ocsinventory-agent
 %attr(755,root,root) %{_bindir}/*
-%attr(755,root,root) /bin/ocsinv
 %{_datadir}/%{name}/
 %dir %{perl_vendorlib}/Ocsinventory
 %{perl_vendorlib}/Ocsinventory/*.pm
