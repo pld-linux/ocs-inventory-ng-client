@@ -16,11 +16,9 @@ URL:		http://www.ocsinventory-ng.org/
 BuildRequires:	perl-devel >= 1:5.6
 BuildRequires:	perl-ExtUtils-MakeMaker
 Requires:	perl-Net-SSLeay
-Requires:	libwww-perl
 Requires:	perl-Digest-MD5
 Requires:	perl-XML-Simple >= 2.12
 Requires:	dmidecode
-Requires:	ipdiscover
 Requires:	perl-Net-IP >= 1.21
 Requires:	perl-Compress-Zlib >= 1.33
 Requires:	perl-XML-Simple
