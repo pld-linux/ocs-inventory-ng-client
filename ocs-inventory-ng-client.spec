@@ -39,6 +39,10 @@ Agent OCS-ng Inventory dla systemów PLD.
 # undos the source
 find '(' -name '*.php' -o -name '*.inc' -o  -name '*.conf' -o  -name '*.htc' -o  -name '*.js' -o  -name '*.dtd' -o  -name '*.pm' -o  -name '*.css' ')' -print0 | xargs -0 sed -i -e 's,\r$,,'
 
+# script for migration from old or make new configuration files 
+mv postinst.pl postinst.pl.old
+touch postinst.pl
+
 %build
 %{__perl} Makefile.PL \
 	INSTALLDIRS=vendor
