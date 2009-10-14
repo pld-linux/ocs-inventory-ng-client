@@ -16,11 +16,19 @@ do
 			OPTS="--wait ${OCSPAUSE[$i]}"
 		fi
 
+		if [ "${OCSNOSOFTWARE[$i]}" = '1' ] || [ "${OCSNOSOFTWARE[$i]}" = 'yes' ]; then
+			OPTS="$OPTS --nosoftware"
+		fi
+
+		if [ "${OCSFORCE[$i]}" = '1' ] || [ "${OCSFORCE[$i]}" = 'yes' ]; then
+			OPTS="$OPTS --force"
+		fi
+
 		if [ ! -z "${OCSTAG[$i]}" ]; then
 		        OPTS="$OPTS --tag=${OCSTAG[$i]}"
 		fi
 
-		if [ "z${OCSSERVER[$i]}" = 'zlocal' ]; then
+		if [ "${OCSSERVER[$i]}" = 'zlocal' ]; then
 	        	# Local inventory
 	        	OPTS="$OPTS --local=/var/lib/$NAME"
 		elif [ ! -z "${OCSSERVER[$i]}" ]; then
@@ -28,9 +36,9 @@ do
 		        OPTS="$OPTS --lazy --server=${OCSSERVER[$i]}"	
 		fi
 		echo "[$(date '+%c')] Running $NAME $OPTS"
-		/usr/bin/$NAME  $OPTS
+		echo "/usr/bin/$NAME  $OPTS"
 	fi
 	((i++))
 done
-echo "[$(date '+%c')] End of cron job ($PATH)"
+echo "[$(date '+%c')] End of cron job ($0)"
 
