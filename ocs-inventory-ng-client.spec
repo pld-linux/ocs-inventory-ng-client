@@ -63,6 +63,9 @@ install %SOURCE1 $RPM_BUILD_ROOT%{_sysconfdir}/logrotate.d/ocsinventory-agent
 install %SOURCE2 $RPM_BUILD_ROOT%{_sysconfdir}/cron.daily/ocsinventory-agent
 install %SOURCE3 $RPM_BUILD_ROOT%{_sysconfdir}/sysconfig/ocsinventory-agent
 
+%{__rm} $RPM_BUILD_ROOT%{perl_vendorarch}/auto/Ocsinventory/Agent/.packlist
+%{__rm} $RPM_BUILD_ROOT%{perl_archlib}/perllocal.pod
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
