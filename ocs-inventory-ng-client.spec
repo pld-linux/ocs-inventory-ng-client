@@ -23,11 +23,9 @@ Requires:	dmidecode
 Requires:	perl-Net-IP >= 1.21
 Requires:	perl-Compress-Zlib >= 1.33
 Requires:	perl-XML-Simple
-%ifarch i586 i686 athlon pentium3 pentium4 %{x8664}
 Suggests:	dmidecode
 Suggests:	nmap
-Suggests:	lspci
-%endif
+Suggests:	pciutils
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
