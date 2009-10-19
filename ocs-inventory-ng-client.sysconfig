@@ -2,5 +2,6 @@
 OCSMODE=none
 #OCSPAUSE=
 #OCSTAG=
+# ip/server name or zlocal for local store XML file in /var/lib/ocsinventory-agent
 #OCSSERVER=localhost
 
