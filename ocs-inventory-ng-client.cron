@@ -35,6 +35,7 @@ do
 	        	# Remote inventory
 		        OPTS="$OPTS --lazy --server=${OCSSERVER[$i]}"	
 		fi
+		OPTS="$OPTS --logfile=/var/log/ocsinventory-agent/ocsinventory-agent.log "
 		echo "[$(date '+%c')] Running $NAME $OPTS"
 		echo "/usr/bin/$NAME  $OPTS"
 	fi
