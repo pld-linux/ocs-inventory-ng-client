@@ -21,7 +21,7 @@ Requires:	perl-Digest-MD5
 Requires:	perl-XML-Simple >= 2.12
 Requires:	dmidecode
 Requires:	perl-Net-IP >= 1.21
-Requires:	perl-Compress-Zlib >= 1.33
+Requires:	perl-IO-Compress
 Requires:	perl-XML-Simple
 Suggests:	dmidecode
 Suggests:	nmap
