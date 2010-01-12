@@ -1,8 +1,6 @@
 #!/bin/bash
 NAME=ocsinventory-agent
 
-exec >>/var/log/$NAME/$NAME.log 2>&1 
-
 [ -f   /etc/sysconfig/$NAME ] || exit 0
 source /etc/sysconfig/$NAME
 export PATH
@@ -37,7 +35,7 @@ do
 		fi
 		OPTS="$OPTS --logfile=/var/log/ocsinventory-agent/ocsinventory-agent.log "
 		echo "[$(date '+%c')] Running $NAME $OPTS"
-		echo "/usr/bin/$NAME  $OPTS"
+		/usr/bin/$NAME  $OPTS
 	fi
 	((i++))
 done
