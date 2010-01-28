@@ -15,7 +15,7 @@
 #
 # Rotate OCS Inventory NG agent logs daily, only if not empty
 # Save 7 days old logs under compressed mode
-/var/log/ocsinventory-client/*.log {
+/var/log/ocsinventory-agent/*.log {
 	daily
 	rotate 7
 	compress
