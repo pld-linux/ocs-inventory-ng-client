@@ -1,4 +1,4 @@
-#TODO:
+# TODO:
 # - init script, and choice daemon/cron in /etc/sysconfig/ocsinventory-agent (example in debian)
 
 Summary:	OCS-ng Inventory agent for PLD systems
@@ -10,19 +10,18 @@ License:	GPL
 Group:		Networking/Daemons
 Source0:	http://launchpad.net/ocsinventory-unix-agent/stable/ocsinventory-unix-agent-1.1.2/+download/Ocsinventory-Agent-%{version}.tar.gz
 # Source0-md5:	c1e8e863d234e7f034a15636a38bfd96
-Source1:        %{name}.logrotate
+Source1:	%{name}.logrotate
 Source2:	%{name}.cron
-Source3:        %{name}.sysconfig
+Source3:	%{name}.sysconfig
 URL:		http://www.ocsinventory-ng.org/
-BuildRequires:	perl-devel >= 1:5.6
 BuildRequires:	perl-ExtUtils-MakeMaker
-Requires:	perl-Net-SSLeay
-Requires:	perl-Digest-MD5
-Requires:	perl-XML-Simple >= 2.12
+BuildRequires:	perl-devel >= 1:5.6
 Requires:	dmidecode
-Requires:	perl-Net-IP >= 1.21
+Requires:	perl-Digest-MD5
 Requires:	perl-IO-Compress
-Requires:	perl-XML-Simple
+Requires:	perl-Net-IP >= 1.21
+Requires:	perl-Net-SSLeay
+Requires:	perl-XML-Simple >= 2.12
 Suggests:	dmidecode
 Suggests:	nmap
 Suggests:	pciutils
@@ -41,7 +40,7 @@ Agent OCS-ng Inventory dla systemów PLD.
 # undos the source
 find '(' -name '*.php' -o -name '*.inc' -o  -name '*.conf' -o  -name '*.htc' -o  -name '*.js' -o  -name '*.dtd' -o  -name '*.pm' -o  -name '*.css' ')' -print0 | xargs -0 sed -i -e 's,\r$,,'
 
-# remove script for migration from old or make new configuration files 
+# remove script for migration from old or make new configuration files
 mv postinst.pl postinst.pl.old
 touch postinst.pl
 
@@ -57,7 +56,7 @@ install -d $RPM_BUILD_ROOT{%{_var}/{log/ocsinventory-agent,lib/ocsinventory-agen
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-ln -s /usr/sbin/ocsinventory-client.pl $RPM_BUILD_ROOT/bin/ocsinv
+ln -s %{_sbindir}/ocsinventory-client.pl $RPM_BUILD_ROOT/bin/ocsinv
 ln -s /etc/sysconfig/ocsinventory-agent $RPM_BUILD_ROOT%{_sysconfdir}/ocsinventory-agent/ocsinventory-agent
 install %SOURCE1 $RPM_BUILD_ROOT%{_sysconfdir}/logrotate.d/ocsinventory-agent
 install %SOURCE2 $RPM_BUILD_ROOT%{_sysconfdir}/cron.daily/ocsinventory-agent
@@ -71,12 +70,12 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc README 
+%doc README
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/logrotate.d/ocsinventory-agent
 %dir %{_sysconfdir}/ocsinventory-agent
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/ocsinventory-agent/ocsinventory-agent
-%attr(750,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/cron.daily/ocsinventory-agent
-%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/sysconfig/ocsinventory-agent
+%attr(750,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/cron.daily/ocsinventory-agent
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/sysconfig/ocsinventory-agent
 #%{_sysconfdir}/init.d/ocsinventory-agent
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) /bin/ocsinv
@@ -89,5 +88,5 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{perl_vendorlib}/Ocsinventory/Agent
 %{perl_vendorlib}/Ocsinventory/Agent/*
 %dir %{_var}/log/ocsinventory-agent
-%{_mandir}/man1/*.gz
-%{_mandir}/man3/*.gz
+%{_mandir}/man1/*
+%{_mandir}/man3/*
