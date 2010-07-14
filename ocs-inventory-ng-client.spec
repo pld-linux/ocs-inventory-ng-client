@@ -4,12 +4,12 @@
 Summary:	OCS-ng Inventory agent for PLD systems
 Summary(pl.UTF-8):	Agent OCS-ng Inventory dla systemów PLD
 Name:		ocs-inventory-ng-client
-Version:	1.02
+Version:	1.1.2
 Release:	2
 License:	GPL
 Group:		Networking/Daemons
-Source0:	http://dl.sourceforge.net/ocsinventory/OCSNG_UNIX_AGENT-%{version}.tar.gz
-# Source0-md5:	749501586e0c634680c13000b3b2851e
+Source0:	http://launchpad.net/ocsinventory-unix-agent/stable/ocsinventory-unix-agent-1.1.2/+download/Ocsinventory-Agent-%{version}.tar.gz
+# Source0-md5:	c1e8e863d234e7f034a15636a38bfd96
 Source1:        %{name}.logrotate
 Source2:	%{name}.cron
 Source3:        %{name}.sysconfig
@@ -36,7 +36,7 @@ OCS-ng Inventory agent for PLD systems.
 Agent OCS-ng Inventory dla systemów PLD.
 
 %prep
-%setup -q -n Ocsinventory-Agent-1.0.1
+%setup -q -n Ocsinventory-Agent-%{version}
 
 # undos the source
 find '(' -name '*.php' -o -name '*.inc' -o  -name '*.conf' -o  -name '*.htc' -o  -name '*.js' -o  -name '*.dtd' -o  -name '*.pm' -o  -name '*.css' ')' -print0 | xargs -0 sed -i -e 's,\r$,,'
@@ -89,4 +89,5 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{perl_vendorlib}/Ocsinventory/Agent
 %{perl_vendorlib}/Ocsinventory/Agent/*
 %dir %{_var}/log/ocsinventory-agent
-%{_mandir}/man1/ocsinventory-agent.1p.gz
+%{_mandir}/man1/*.gz
+%{_mandir}/man3/*.gz
