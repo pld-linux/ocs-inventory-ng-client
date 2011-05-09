@@ -1,16 +1,17 @@
 # TODO:
 # - init script, and choice daemon/cron in /etc/sysconfig/ocsinventory-agent (example in debian)
+# - check (Build)Requires 
 
 Summary:	OCS-ng Inventory agent for PLD systems
 Summary(pl.UTF-8):	Agent OCS-ng Inventory dla systemów PLD
 Name:		ocs-inventory-ng-client
-Version:	1.1.2
-Release:	1
+Version:	2.0
+Release:	0.1
 Epoch:		1
 License:	GPL
 Group:		Networking/Daemons
-Source0:	http://launchpad.net/ocsinventory-unix-agent/stable/ocsinventory-unix-agent-1.1.2/+download/Ocsinventory-Agent-%{version}.tar.gz
-# Source0-md5:	c1e8e863d234e7f034a15636a38bfd96
+Source0:	http://launchpad.net/ocsinventory-unix-agent/stable-2.0/2.0/+download/Ocsinventory-Agent-%{version}.tar.gz
+# Source0-md5:	58d21f2a172f0692751d382995b7e6e5
 Source1:	%{name}.logrotate
 Source2:	%{name}.cron
 Source3:	%{name}.sysconfig
