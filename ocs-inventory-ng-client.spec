@@ -6,7 +6,7 @@ Summary:	OCS-ng Inventory agent for PLD systems
 Summary(pl.UTF-8):	Agent OCS-ng Inventory dla systemów PLD
 Name:		ocs-inventory-ng-client
 Version:	2.0
-Release:	1
+Release:	2
 Epoch:		1
 License:	GPL
 Group:		Networking/Daemons
@@ -27,7 +27,6 @@ Requires:	perl-XML-Simple >= 2.12
 Suggests:	dmidecode
 Suggests:	nmap
 Suggests:	pciutils
-BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
